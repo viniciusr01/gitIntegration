@@ -26,7 +26,6 @@ app.use('/pull', pull);
 passwordMongoDB = process.env.PASSWORD_MONGO_DB
 userMongoDB = encodeURIComponent(process.env.USER_MONGO_DB)
 
-
 mongoose
     .connect(`mongodb+srv://${userMongoDB}:${passwordMongoDB}@app-onboarding.mfeolue.mongodb.net/gitGeolabor?retryWrites=true&w=majority`)
     .then(()=> {

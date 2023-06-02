@@ -95,4 +95,56 @@ module.exports = class PullRequest{
             return `Could not get Pull Requests: ${error}`
         }
     }
+
+    async getPullRequestOfOneUser(username){
+
+        try{
+            const prsOfUser = await PullRequests.find({'user': username})
+            return prsOfUser
+        }
+        catch(error){
+            return `Could not get Pull Requests of ${username}: ${error}`
+        }
+    }
+
+    async sumOfPrOpen(prsList){
+        try{
+
+            let sumOfPrOpen = 0
+
+            prsList.forEach( pr =>{
+                if(pr.status === 'open'){
+                    sumOfPrOpen += 1
+                }
+            })
+
+            return sumOfPrOpen
+
+        }catch(error){
+            return `Could not get Sum of Pull Requests: ${error}`
+        }
+    }
+
+    
+    async getUsersWithPullRequests(){
+        try {
+            
+            const prs = await PullRequests.find()
+            let users = []
+
+            prs.forEach(pr => {
+                if (!users.includes(pr.user)){
+                    users.push(pr.user)
+                }
+            })
+           
+
+            return users
+            
+        }
+        catch(error){
+            return `Could not get all users with Pull Requests: ${error}`
+        }
+    }
+    
 }
