@@ -4,12 +4,38 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+
 
 
 function Usuario(){
 
-
     const {username} = useParams()
+
+    const [prs, setPrs] = useState([])
+    const [sumPR, setSumPR] = useState([])
+    
+    useEffect(() => {
+        
+        fetch(`http://localhost:5000/pull/${username}`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                setPrs(data.pr)
+                setSumPR(data.sum)
+                console.log(data)
+            })
+            .catch((error)=> console.log(error))
+
+    }, [])
+
+
+
+    
 
     return (
         
@@ -17,7 +43,12 @@ function Usuario(){
                 <div className="row flex-nowrap">
                                 <NavBar />
                                 <div className="col py-3">
-                                        <h6> Oi {username} </h6>
+                                        <h5> Oi {username} </h5>
+                                        <h6>A soma de Pull Request abertos do {username} é {sumPR} </h6>
+                                        <h6> Os Prs são:</h6>
+                                        {prs.map( (pr) => (
+                                                <li key={pr._id}> {pr.title} </li>
+                                        ))}
                                 </div>
                 </div>
         </div>

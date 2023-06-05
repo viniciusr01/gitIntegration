@@ -48,7 +48,7 @@ function NavBar(){
                                                                 <ul className="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                                                                 
                                                                 {usuarios.map( (user) =>(
-                                                                        <li className="w-100">
+                                                                        <li  key={user} className="w-100">
                                                                             <a href={'/'+user} className="nav-link px-0"> <span className="d-none d-sm-inline text-white">{user}</span> </a>
                                                                         </li>
                                                                 ))}

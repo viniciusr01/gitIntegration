@@ -26,7 +26,11 @@ router.get('/users', async (req, res) => {
 
 router.get('/:username', async (req, res) => {
     const user = req.params.username
-    send = await pr.getPullRequestOfOneUser(user)
+    prOneUser = await pr.getPullRequestOfOneUser(user)
+    sumPr = await pr.sumOfPrOpen(prOneUser)
+
+    send = {pr: prOneUser, sum: sumPr}
+
     res.status(200).json(send)
 })
 
