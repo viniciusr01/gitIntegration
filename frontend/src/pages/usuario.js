@@ -42,13 +42,55 @@ function Usuario(){
         <div className="container-fluid">
                 <div className="row flex-nowrap">
                                 <NavBar />
-                                <div className="col py-3">
-                                        <h5> Oi {username} </h5>
+                                <div className="col py-0 px-0">
+                                    
+                                    <div class="d-flex flex-column bd-highlight mb-3 bg-dark">
+                                        <div class="p-2 text-light">{username}</div>
+                                    </div>
+                               
+
+                                    <div className="col py-3 px-3">
+                                        
                                         <h6>A soma de Pull Request abertos do {username} é {sumPR} </h6>
-                                        <h6> Os Prs são:</h6>
+                                        &ensp;
+                                        
                                         {prs.map( (pr) => (
-                                                <li key={pr._id}> {pr.title} </li>
+
+                                                <div class="row">
+
+                                                    <div class="col-sm-6">
+                                                        <div class="card">
+                                                            <div class="card-header">
+                                                                {pr.title}
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <p class="card-text">Quantidade de commits: {pr.countOfCommits}</p>
+                                                                <p class="card-text">Quantidade de arquivos modificados: {pr.countOfChangedFiles}</p>
+                                                            </div>
+                                                        </div>
+                                                        &ensp;
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <div class="card">
+                                                            <div class="card-header">
+                                                                {pr.title}
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <p class="card-text">Quantidade de commits: {pr.countOfCommits}</p>
+                                                                <p class="card-text">Quantidade de arquivos modificados: {pr.countOfChangedFiles}</p>
+                                                            </div>
+                                                        </div>
+                                                        &ensp;
+                                                    </div>
+
+                                              
+                                                </div>
+                                                 
+                                               
                                         ))}
+                                    </div>
+
                                 </div>
                 </div>
         </div>
