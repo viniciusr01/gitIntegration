@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './pages/home';
-
+import Usuario from './pages/usuario';
 
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
 
         <Routes>
           <Route path="/" index element={<Home/>}></Route>
+          <Route path="/:username" index element={<Usuario/>}></Route>
         
         </Routes>
 
