@@ -7,7 +7,6 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 
 
-
 function Usuario(){
 
     const {username} = useParams()
@@ -33,9 +32,17 @@ function Usuario(){
 
     }, [])
 
+    function getData(pr){
+        return [
+            {'Additions': pr.countOfAdditions},
+            {'ChangedFiles': pr.countOfChangedFiles},
+            {'Comments': pr.countOfComments},
+            {'Commits': pr.countOfCommits},
+            {'Deletions': pr.countOfDeletions},
+            {'ReviewComments': pr.countOfReviewComments},
 
-
-    
+        ]
+    }
 
     return (
         
@@ -44,8 +51,8 @@ function Usuario(){
                                 <NavBar />
                                 <div className="col py-0 px-0">
                                     
-                                    <div class="d-flex flex-column bd-highlight mb-3 bg-dark">
-                                        <div class="p-2 text-light">{username}</div>
+                                    <div className="d-flex flex-column bd-highlight mb-3 bg-dark">
+                                        <div className="p-2 text-light">{username}</div>
                                     </div>
                                
 
@@ -54,41 +61,33 @@ function Usuario(){
                                         <h6>A soma de Pull Request abertos do {username} é {sumPR} </h6>
                                         &ensp;
                                         
-                                        {prs.map( (pr) => (
+                                        <table className="table">
 
-                                                <div class="row">
+                                            <thead className="thead-dark">
+                                                <tr>
+                                                    <th scope="col">Titulo</th>
+                                                    <th scope="col"># Commit</th>
+                                                    <th scope="col"># Arquivos alterados</th>
+                                                    <th scope="col"># Arquivos adicionados</th>
+                                                    <th scope="col"># Arquivos deletados</th>
+                                                </tr>
+                                            </thead>
+                                        
+                                            {prs.map( (pr) => (
+                                            
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">{pr.title}</th>
+                                                    <th scope="row">{pr.countOfCommits}</th>
+                                                    <th scope="row">{pr.countOfChangedFiles}</th>
+                                                    <th scope="row">{pr.countOfAdditions}</th>
+                                                    <th scope="row">{pr.countOfDeletions}</th>
+                                                </tr>
+                                                
+                                            </tbody>                                                                                            
+                                            ))}
 
-                                                    <div class="col-sm-6">
-                                                        <div class="card">
-                                                            <div class="card-header">
-                                                                {pr.title}
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <p class="card-text">Quantidade de commits: {pr.countOfCommits}</p>
-                                                                <p class="card-text">Quantidade de arquivos modificados: {pr.countOfChangedFiles}</p>
-                                                            </div>
-                                                        </div>
-                                                        &ensp;
-                                                    </div>
-
-                                                    <div class="col-sm-6">
-                                                        <div class="card">
-                                                            <div class="card-header">
-                                                                {pr.title}
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <p class="card-text">Quantidade de commits: {pr.countOfCommits}</p>
-                                                                <p class="card-text">Quantidade de arquivos modificados: {pr.countOfChangedFiles}</p>
-                                                            </div>
-                                                        </div>
-                                                        &ensp;
-                                                    </div>
-
-                                              
-                                                </div>
-                                                 
-                                               
-                                        ))}
+                                        </table>
                                     </div>
 
                                 </div>

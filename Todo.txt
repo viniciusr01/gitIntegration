@@ -1,0 +1,6 @@
+# Diferenciar State e status 
+# Atualizar o State com base na lista retornada de PRs abertos
+# Adicionar revisores de Pull Request no DB
+# Criar fetch para cada pull request and getinfomation sobre revisores
+# Avalair redux no frontend
+# Alterar Estrutura de Dados do consolidado

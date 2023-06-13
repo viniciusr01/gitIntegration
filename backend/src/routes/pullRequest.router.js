@@ -23,6 +23,18 @@ router.get('/users', async (req, res) => {
     res.status(200).json(send)
 })
 
+router.get('/consolidado', async (req, res) => {
+    
+
+    allPr = await pr.getPullRequest()
+    sumAllPR = await pr.sumOfPrOpen(allPr)
+    numbPrEachUser = await pr.getNumberPrEachUser()
+
+    send = {prEachUser: numbPrEachUser, sum: sumAllPR}
+
+
+    res.status(200).json(send)
+})
 
 router.get('/:username', async (req, res) => {
     const user = req.params.username
@@ -33,6 +45,9 @@ router.get('/:username', async (req, res) => {
 
     res.status(200).json(send)
 })
+
+
+
 
 
 module.exports = router;

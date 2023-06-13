@@ -50,18 +50,28 @@ const pullRequestSchema = Schema({
         required: false,
     },
 
-    countOfAdditions: {
+    countOfLinesAdded: {
         type: Number,
         required: false,
     },
 
-    countOfDeletions: {
+    countOfLinesDeleted: {
         type: Number,
         required: false,
     },
 
     countOfChangedFiles: {
         type: Number,
+        required: false,
+    },
+
+    requestedReviewers: {
+        type: Object,
+        required: false,
+    },
+
+    reviewerInformation: {
+        type: Object,
         required: false,
     }
 
