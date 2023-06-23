@@ -22,6 +22,10 @@ app.get('/', (req, res)=>{
 const pull = require('./backend/src/routes/pullRequest.router')
 app.use('/pull', pull);
 
+const login = require('./backend/src/routes/login.router')
+app.use('/login', login);
+
+
 
 //Connection with DB
 passwordMongoDB = process.env.PASSWORD_MONGO_DB
