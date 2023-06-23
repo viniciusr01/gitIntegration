@@ -32,18 +32,6 @@ function Usuario(){
 
     }, [])
 
-    function getData(pr){
-        return [
-            {'Additions': pr.countOfAdditions},
-            {'ChangedFiles': pr.countOfChangedFiles},
-            {'Comments': pr.countOfComments},
-            {'Commits': pr.countOfCommits},
-            {'Deletions': pr.countOfDeletions},
-            {'ReviewComments': pr.countOfReviewComments},
-
-        ]
-    }
-
     return (
         
         <div className="container-fluid">
@@ -68,8 +56,8 @@ function Usuario(){
                                                     <th scope="col">Titulo</th>
                                                     <th scope="col"># Commit</th>
                                                     <th scope="col"># Arquivos alterados</th>
-                                                    <th scope="col"># Arquivos adicionados</th>
-                                                    <th scope="col"># Arquivos deletados</th>
+                                                    <th scope="col"># Linhas adicionadas</th>
+                                                    <th scope="col"># Linhas deletadas</th>
                                                 </tr>
                                             </thead>
                                         
@@ -80,8 +68,8 @@ function Usuario(){
                                                     <th scope="row">{pr.title}</th>
                                                     <th scope="row">{pr.countOfCommits}</th>
                                                     <th scope="row">{pr.countOfChangedFiles}</th>
-                                                    <th scope="row">{pr.countOfAdditions}</th>
-                                                    <th scope="row">{pr.countOfDeletions}</th>
+                                                    <th scope="row">{pr.countOfLinesAdded}</th>
+                                                    <th scope="row">{pr.countOfLinesDeleted}</th>
                                                 </tr>
                                                 
                                             </tbody>                                                                                            

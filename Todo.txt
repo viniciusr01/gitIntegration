@@ -4,3 +4,10 @@
 # Criar fetch para cada pull request and getinfomation sobre revisores
 # Avalair redux no frontend
 # Alterar Estrutura de Dados do consolidado
+
+
+# Visualização que está aguardando autor, revisor, teste
+# Inserir login with github
+# Last update db
+# Diferenciar Approved, Comment em PR para revisão
+# Inserir filtro

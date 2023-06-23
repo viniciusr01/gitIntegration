@@ -13,7 +13,10 @@ function Home() {
 
 
     const [prEachUser, setPrEachUser] = useState([])
-    const [sumPR, setSumPR] = useState([])
+    const [sumPrOpen, setSumPrOpen] = useState([])
+    const [sumPrClosed, setSumPrClosed] = useState([])
+    const [sumPrDraft, setSumPrDraft] = useState([])
+    
 
     useEffect(() => {
 
@@ -26,8 +29,10 @@ function Home() {
             .then((resp) => resp.json())
             .then((data) => {
                 setPrEachUser(data.prEachUser)
-                setSumPR(data.sum)
-                console.log(data.prEachUser)
+                setSumPrOpen(data.sumOpen)
+                setSumPrClosed(data.sumClosed)
+                setSumPrDraft(data.sumDraft)
+                
 
             })
             .catch((error) => console.log(error))
@@ -40,65 +45,65 @@ function Home() {
         <div className="container-fluid">
             <div className="row flex-nowrap">
                 <NavBar />
-                <div className="col py-3">
+                <div className="col py-4">
 
-                    <div className="card-group">
-
-                        <div className="card">
-                            <div className="card-header">
-                                Pull Requests Abertos
+                    <div Style='margin-right: 8%; margin-left: 6%'>                   
+                        <div class="row row-cols-1 row-cols-md-4 g-4">
+                            <div class="col">
+                                <div class="card">
+                                    <div className="card-header" Style="background-color: #4069FF; color: #FFFFFF; font-weight: bold; text-align: center;">
+                                        PR Abertos
+                                    </div>
+                                    <div class="card-body" Style="font-weight: bold; text-align: center;">
+                                        {sumPrOpen}
+                                    </div>
+                                </div>
                             </div>
-                            <div className="card-body">
-                                {sumPR}
+                            <div class="col">
+                                <div class="card">
+                                    <div className="card-header" Style="background-color: #4069FF; color: #FFFFFF; font-weight: bold; text-align: center;">
+                                        PR Fechados
+                                    </div>
+                                    <div class="card-body" Style="font-weight: bold; text-align: center;">
+                                        {sumPrClosed}
+                                    </div>
+                                </div>
                             </div>
+                            <div class="col">
+                                <div class="card">
+                                    <div className="card-header" Style="background-color: #4069FF; color: #FFFFFF; font-weight: bold; text-align: center;">
+                                        PR Draft
+                                    </div>
+                                    <div class="card-body" Style="font-weight: bold; text-align: center;">
+                                        {sumPrDraft}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card">
+                                    <div className="card-header" Style="background-color: #4069FF; color: #FFFFFF; font-weight: bold; text-align: center;">
+                                        Total PR
+                                    </div>
+                                    <div class="card-body" Style="font-weight: bold; text-align: center;">
+                                        {sumPrClosed+sumPrOpen+sumPrDraft}
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
+                    </div> 
 
-                        <div className="card">
-                            <div className="card-header">
-                                Quantindade de usuários
-                            </div>
-                            <div className="card-body">
-                                11
-                            </div>
-                        </div>
-
-                        <div className="card">
-                            <div className="card-header">
-                                Title
-                            </div>
-                            <div className="card-body">
-                                Info
-                            </div>
-                        </div>
-
-                        <div className="card">
-                            <div class="card-header">
-                                Title
-                            </div>
-                            <div className="card-body">
-                                Info
-                            </div>
-                        </div>
-
-                        <div className="card">
-                            <div className="card-header">
-                                Title
-                            </div>
-                            <div className="card-body">
-                                Info
-                            </div>
-                        </div>
-
-                    </div>
                     &ensp;
                     &ensp;
                     &ensp;
+                    &ensp;
+               
 
-                    <div>
+                    
 
-                        <BarChart
-                            width={900}
-                            height={400}
+                        {/* <BarChart
+                            width={1040}
+                            height={450}
                             data={prEachUser}
                             margin={{
                                 top: 5,
@@ -108,31 +113,42 @@ function Home() {
                             }}
                         >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
+                            <XAxis dataKey="user" />
                             <YAxis />
                             <Tooltip />
                             <Legend />
 
-                            {prEachUser.map(user =>
-                                <Bar dataKey={Object.keys(user)[0]} fill="#8884d8" />
-                            )}
+                            <Bar dataKey= 'sumOfPrOpen' fill="#204ADB" />
+                            <Bar dataKey= 'sumPrToReview' fill="#e5894b" />
+
+                        </BarChart> */}
 
 
-                            {/* <Bar dataKey="pedroLagares" fill="#8884d8" />
-                                                <Bar dataKey="HeitorPena" fill="#82ca9d" />
-                                                <Bar dataKey="DouglasRPaula" fill="#82ca9d" />
-                                                <Bar dataKey="CaioVieira-dev" fill="#82ca9d" />
-                                                <Bar dataKey="LHGS2001" fill="#82ca9d" />
-                                                <Bar dataKey="CamsCampos" fill="#82ca9d" />
-                                                <Bar dataKey="vbarcellos" fill="#82ca9d" />
-                                                <Bar dataKey="antoniobritto07" fill="#82ca9d" />
-                                                <Bar dataKey="JoaoAraujoGato" fill="#82ca9d" />
-                                                <Bar dataKey="joaoassisb" fill="#82ca9d" />
-                                                <Bar dataKey="nerissa-aguirre" fill="#82ca9d" /> */}
+
+                        <BarChart
+                            width={1000}
+                            height={500}
+                            data={prEachUser}
+                            layout="vertical"
+                            margin={{
+                                top: 5,
+                                right: 30,
+                                left: 100,
+                                bottom: 5,
+                            }}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis type="number" />
+                            <YAxis dataKey="user"  type="category"/>
+                            <Tooltip />
+                            <Legend />
+
+                            <Bar dataKey= 'sumOfPrOpen' fill="#204ADB" />
+                            <Bar dataKey= 'sumPrToReview' fill="#e5894b" />
 
                         </BarChart>
 
-                    </div>
+              
 
 
 
